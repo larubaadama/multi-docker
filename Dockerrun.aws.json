@@ -1,0 +1,36 @@
+{
+    "AWSEBDockerrrunVersion": 2,
+    "containerDefinations":[
+        {
+            "name": "client",
+            "image": "dlaruba/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+        {
+            "name": "server",
+            "image": "dlaruba/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+        {
+            "name": "worker",
+            "image": "dlaruba/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+        {
+            "name": "nginx",
+            "image": "dlaruba/multi-nginx",
+            "essential": true,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort":80
+                }
+            ],
+            "links": ["client","server"]
+        }
+    ]
+
+}
